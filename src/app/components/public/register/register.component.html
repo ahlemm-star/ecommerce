@@ -1,0 +1,132 @@
+<div class="container">
+
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <form [formGroup]="registreForm" class="user" (ngSubmit)="registerUser()">
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="exampleFirstName">prenom</label>
+                                    <input type="text" class="form-control form-control-user" id="exampleFirstName"
+                                        placeholder="First Name" formControlName="firstname">
+                                    <div class="text-danger" *ngIf="firstname.touched && firstname.invalid">
+                                        <div *ngIf="firstname.errors.required">
+                                            *prenom est obligatoire
+                                        </div>
+                                        <div *ngIf="firstname.errors.minlength">
+                                            *prenom doit etre composé au minimum de 3 lettres
+                                        </div>
+                                        <div *ngIf="firstname.errors.pattern">
+                                            *prenom invalide
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <label for="exampleLastName">nom</label>
+                                    <input type="text" class="form-control form-control-user" id="exampleLastName"
+                                        placeholder="Last Name" formControlName="lastname">
+                                    <div class="text-danger" *ngIf="lastname.touched && lastname.invalid">
+                                        <div *ngIf="lastname.errors.required">
+                                            *nom est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="exampleDate">Date de naissance</label>
+                                    <input type="date" class="form-control form-control-user" id="exampleDate"
+                                        formControlName="birthday">
+                                    <div class="text-danger" *ngIf="birthday.touched && birthday.invalid">
+                                        <div *ngIf="birthday.errors.required">
+                                            *date est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="exampleGender">Genre</label>
+                                    <select class="form-control " id="exampleGender"
+                                        formControleName="gender">
+                                        <option value="h">Homme</option>
+                                        <option value="f">Femme</option>
+                                    </select>
+                                    <div class="text-danger" *ngIf="gender.touched && gender.invalid">
+                                        <div *ngIf="gender.errors.required">
+                                            *genre est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail">Email</label>
+                                <input type="email" class="form-control form-control-user" id="exampleInputEmail"
+                                    placeholder="Email Address" formControlName="email">
+                                <div class="text-danger" *ngIf="email.touched && email.invalid">
+                                    <div *ngIf="email.errors.required">
+                                        *email est obligatoire
+                                    </div>
+                                    <div *ngIf="email.errors.email">
+                                        *email invalid
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <label for="exampleInputPassword">Mot de passe</label>
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleInputPassword" placeholder="Password" formControlName="password">
+                                    <div class="text-danger" *ngIf="password.touched && password.invalid">
+                                        <div *ngIf="password.errors.required">
+                                            *mot de passe est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <label for="exampleRepeatPassword">Repeter Mot de passe</label>
+                                    <input type="password" class="form-control form-control-user"
+                                        id="exampleRepeatPassword" placeholder="Repeat Password"
+                                        formControlName="repeatpassword">
+                                    <div class="text-danger" *ngIf="repeatpassword.touched && repeatpassword.invalid">
+                                        <div *ngIf="repeatpassword.errors.required">
+                                            * repeter le mot de passe est obligatoire
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-danger" *ngIf="repeatpassword.value!=password.value && repeatpassword.valid">
+mdp diff de confirm
+                            </div>
+{{registreForm.invalid}} {{repeatpassword.value!=password.value}}
+                            <button type="submit" [disabled]="registreForm.invalid||repeatpassword.value!=password.value" 
+                                class="btn btn-primary btn-user btn-block">
+                                Register Account
+                            </button>
+
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small">Forgot Password?</a>
+                        </div>
+                        <div class="text-center">
+                            <a class="small" routerLink="/signin">Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
